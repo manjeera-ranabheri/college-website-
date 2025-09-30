@@ -1,0 +1,91 @@
+<link rel="stylesheet" href="style.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faculty Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .faculty-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .faculty-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: center;
+      padding: 20px;
+      transition: transform 0.2s;
+    }
+    .faculty-card:hover {
+      transform: translateY(-5px);
+    }
+    .faculty-card img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border: 3px solid #0077b6;
+    }
+    .faculty-card h3 {
+      margin: 10px 0 5px;
+      color: #333;
+    }
+    .faculty-card p {
+      margin: 0;
+      color: #555;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+    <nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="courses.html">Courses</a>
+  <a href="faculty.html">Faculty</a>
+  <a href="admissions.html">Admissions</a>
+  <a href="events.html">Events</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="studentlife.html">Student Life</a>
+  <a href="achievements.html">Achievements</a>
+  <a href="contact.html">Contact</a>
+  <a href="team.html">Team</a>
+</nav>
+<hr>
+  <h1>Our Faculty</h1>
+  <div class="faculty-container">
+    <div class="faculty-card">
+      <img src="faculty1.jpg" alt="Faculty 1">
+      <h3>Dr. John Smith</h3>
+      <p>Professor, Computer Science</p>
+    </div>
+    <div class="faculty-card">
+      <img src="faculty2.jpg" alt="Faculty 2">
+      <h3>Dr. Emily Davis</h3>
+      <p>Associate Professor, Mathematics</p>
+    </div>
+    <div class="faculty-card">
+      <img src="faculty3.jpg" alt="Faculty 3">
+      <h3>Dr. Michael Lee</h3>
+      <p>Assistant Professor, Physics</p>
+    </div>
+    <!-- Add more cards here -->
+  </div>
+</body>
+</html>
