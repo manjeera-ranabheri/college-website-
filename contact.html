@@ -1,0 +1,119 @@
+<link rel="stylesheet" href="style.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - College Website</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f9;
+      color: #333;
+    }
+    header {
+      background: #004080;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin: 20px;
+    }
+    .contact-info, .contact-form {
+      background: #fff;
+      padding: 20px;
+      margin: 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      flex: 1;
+      min-width: 300px;
+    }
+    h2 {
+      color: #004080;
+      margin-bottom: 15px;
+    }
+    .contact-info p {
+      margin: 8px 0;
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    form button {
+      background: #004080;
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    form button:hover {
+      background: #0066cc;
+    }
+    iframe {
+      width: 100%;
+      height: 250px;
+      border: none;
+      border-radius: 8px;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+    <nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="courses.html">Courses</a>
+  <a href="faculty.html">Faculty</a>
+  <a href="admissions.html">Admissions</a>
+  <a href="events.html">Events</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="studentlife.html">Student Life</a>
+  <a href="achievements.html">Achievements</a>
+  <a href="contact.html">Contact</a>
+  <a href="team.html">Team</a>
+</nav>
+<hr>
+  <header>
+    <h1>Contact Us</h1>
+    <p>XYZ College of Science & Technology</p>
+  </header>
+
+  <div class="container">
+    <!-- College Contact Information -->
+    <div class="contact-info">
+      <h2>Our Information</h2>
+      <p><strong>Address:</strong> 123, College Road, City, State, 123456</p>
+      <p><strong>Phone:</strong> +91 98765 43210</p>
+      <p><strong>Email:</strong> info@xyzcollege.edu</p>
+      <p><strong>Office Hours:</strong> Mon - Sat, 9:00 AM - 5:00 PM</p>
+
+      <!-- Google Map Embed -->
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.1234567890!2d-122.0842492846789!3d37.42199997982595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808f123456789abc%3A0x1234567890abcdef!2sYour%20College!5e0!3m2!1sen!2sin!4v1234567890" allowfullscreen></iframe>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="contact-form">
+      <h2>Send Us a Message</h2>
+      <form action="mailto:info@xyzcollege.edu" method="post" enctype="text/plain">
+        <input type="text" name="name" placeholder="Your Full Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <input type="text" name="subject" placeholder="Subject">
+        <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
