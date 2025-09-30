@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>College & Student Achievements</title>
+  <style>
+    :root{
+      --bg:#f6f8fb; --card:#ffffff; --accent:#1f6feb; --muted:#6b7280;
+      --glass: rgba(255,255,255,0.6);
+      --maxw:1100px;
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:#0f172a;line-height:1.45}
+    .wrap{max-width:var(--maxw);margin:36px auto;padding:20px}
+    header{display:flex;align-items:center;gap:16px}
+    .logo{width:64px;height:64px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#4cc9f0);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:20px}
+    h1{margin:0;font-size:20px}
+    p.lead{margin:6px 0 18px;color:var(--muted)}
+
+    .controls{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0}
+    .search, .select{padding:10px 12px;border-radius:8px;border:1px solid #e6e9ef;background:var(--card);min-width:180px}
+    button.action{background:var(--accent);color:white;border:none;padding:10px 14px;border-radius:8px;cursor:pointer}
+    button.ghost{background:transparent;border:1px solid #e6e9ef;padding:10px 14px;border-radius:8px;cursor:pointer}
+
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:20px}
+
+    /* Main list */
+    .cards{display:grid;gap:12px}
+    .card{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 6px 18px rgba(11,22,55,0.06);display:flex;gap:12px;align-items:flex-start}
+    .card .meta{min-width:72px;width:72px;height:72px;border-radius:8px;background:linear-gradient(135deg,#e6f0ff,#f0fbff);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent)}
+    .card h3{margin:0;font-size:16px}
+    .card p{margin:6px 0;color:var(--muted);font-size:14px}
+    .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+    .tag{font-size:12px;padding:6px 8px;border-radius:999px;background:#eef6ff;color:var(--accent)}
+
+    /* Sidebar */
+    aside.sidebar{background:var(--card);padding:14px;border-radius:12px;height:fit-content;box-shadow:0 6px 18px rgba(11,22,55,0.04)}
+    aside h4{margin-top:0}
+    .stat{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed #eef1f6}
+    .small{font-size:13px;color:var(--muted)}
+
+    /* Modal */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(2,6,23,0.5);padding:20px}
+    .modal.open{display:flex}
+    .modal .panel{background:var(--card);border-radius:12px;padding:18px;max-width:720px;width:100%;box-shadow:0 10px 30px rgba(2,6,23,0.3)}
+    .form-row{display:flex;gap:8px;margin-bottom:10px}
+    .form-row input, textarea, select{flex:1;padding:10px;border-radius:8px;border:1px solid #e6e9ef}
+    textarea{min-height:90px;resize:vertical}
+
+    footer{margin-top:24px;color:var(--muted);font-size:13px;text-align:center}
+
+    @media (max-width:900px){.grid{grid-template-columns:1fr}.sidebar{order:2}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">CA</div>
+      <div>
+        <h1>College Achievements & Student Highlights</h1>
+        <p class="lead">Showcase notable college awards, accreditations, and student-level accomplishments. Use the controls to filter and export.</p>
+      </div>
+    </header>
+
+    <div class="controls">
+      <input id="q" class="search" placeholder="Search achievements or student name" />
+      <select id="filterType" class="select">
+        <option value="all">All types</option>
+        <option value="college">College</option>
+        <option value="student">Student</option>
+      </select>
+      <select id="filterYear" class="select">
+        <option value="all">All years</option>
+        <option>2025</option>
+        <option>2024</option>
+        <option>2023</option>
+        <option>2022</option>
+      </select>
+      <button class="action" onclick="openAdd()">+ Add achievement</button>
+      <button class="ghost" onclick="window.print()">Export / Print</button>
+    </div>
+
+    <div class="grid">
+      <main>
+        <div id="cards" class="cards" aria-live="polite">
+          <!-- Cards injected by JS -->
+        </div>
+
+        <footer>
+          Built for showcasing and quick reporting. Customize fields in the code to match your college's needs.
+        </footer>
+      </main>
+
+      <aside class="sidebar">
+        <h4>Summary</h4>
+        <div class="stat"><div class="small">Total achievements</div><div id="statTotal">0</div></div>
+        <div class="stat"><div class="small">College-level</div><div id="statCollege">0</div></div>
+        <div class="stat"><div class="small">Student-level</div><div id="statStudent">0</div></div>
+        <h4 style="margin-top:12px">Top categories</h4>
+        <div class="tags" id="topTags"></div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- Modal for add/edit -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true">
+    <div class="panel">
+      <h3 id="modalTitle">Add Achievement</h3>
+      <div class="form-row">
+        <input id="type" placeholder="Type (college/student)" />
+        <input id="title" placeholder="Title e.g. Best Innovation Award" />
+      </div>
+      <div class="form-row">
+        <input id="person" placeholder="Student name or college dept." />
+        <input id="year" placeholder="Year (e.g. 2025)" />
+      </div>
+      <div class="form-row">
+        <input id="category" placeholder="Category (research, sports, cultural)" />
+      </div>
+      <div>
+        <textarea id="desc" placeholder="Short description"></textarea>
+      </div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:10px">
+        <button class="ghost" onclick="closeModal()">Cancel</button>
+        <button class="action" onclick="saveAchievement()">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Sample data
+    const DATA = [
+      {id:1,type:'college',title:'NAAC A+ Accreditation',person:'Institution',year:2024,category:'accreditation',desc:'Received A+ grade from NAAC, recognizing excellence in teaching and research.'},
+      {id:2,type:'student',title:'National Coding Championship - Winner',person:'Asha R.',year:2025,category:'technical',desc:'Won the national level coding contest among 200 teams.'},
+      {id:3,type:'student',title:'Intercollege Football Champions',person:'Men\'s Team',year:2023,category:'sports',desc:'Won the intercollege football tournament for the 3rd consecutive year.'},
+      {id:4,type:'college',title:'Research Grant (5 Cr)',person:'Research Office',year:2022,category:'research',desc:'Secured government grant for AI research and labs.'},
+      {id:5,type:'student',title:'Best Paper - IEEE',person:'Ravi K.',year:2024,category:'research',desc:'Paper on efficient transformers accepted at IEEE conference.'}
+    ];
+
+    let store = JSON.parse(localStorage.getItem('achv_store') || 'null') || DATA.slice();
+    let nextId = store.length ? Math.max(...store.map(s=>s.id))+1 : 1;
+
+    const cardsEl = document.getElementById('cards');
+    const qEl = document.getElementById('q');
+    const typeFilter = document.getElementById('filterType');
+    const yearFilter = document.getElementById('filterYear');
+
+    function render(){
+      const q = qEl.value.trim().toLowerCase();
+      const t = typeFilter.value;
+      const y = yearFilter.value;
+      const filtered = store.filter(s=>{
+        if(t!=='all' && s.type!==t) return false;
+        if(y!=='all' && String(s.year)!==String(y)) return false;
+        if(!q) return true;
+        return (s.title+s.person+s.desc+s.category).toLowerCase().includes(q);
+      });
+
+      cardsEl.innerHTML = filtered.map(s=>`
+        <article class="card">
+          <div class="meta">${s.year}</div>
+          <div style="flex:1">
+            <h3>${escapeHtml(s.title)}</h3>
+            <div class="small">${escapeHtml(s.person)} • ${escapeHtml(String(s.category))}</div>
+            <p>${escapeHtml(s.desc)}</p>
+            <div class="tags"><span class="tag">${s.type}</span><span class="tag">${s.year}</span></div>
+          </div>
+          <div style="margin-left:8px;display:flex;flex-direction:column;gap:8px">
+            <button class="ghost" onclick="edit(${s.id})">Edit</button>
+            <button class="ghost" onclick="remove(${s.id})">Delete</button>
+          </div>
+        </article>
+      `).join('');
+
+      document.getElementById('statTotal').textContent = store.length;
+      document.getElementById('statCollege').textContent = store.filter(s=>s.type==='college').length;
+      document.getElementById('statStudent').textContent = store.filter(s=>s.type==='student').length;
+
+      // compute top tags/categories
+      const counts = {};
+      store.forEach(s=>counts[s.category] = (counts[s.category]||0)+1);
+      const tagsEl = document.getElementById('topTags');
+      tagsEl.innerHTML = Object.entries(counts).sort((a,b)=>b[1]-a[1]).slice(0,6).map(t=>`<span class="tag">${escapeHtml(t[0])} (${t[1]})</span>`).join('');
+
+      localStorage.setItem('achv_store', JSON.stringify(store));
+    }
+
+    function escapeHtml(str){
+      return String(str).replace(/[&<>"']/g, (m)=>({
+        '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+      })[m]);
+    }
+
+    qEl.addEventListener('input', render);
+    typeFilter.addEventListener('change', render);
+    yearFilter.addEventListener('change', render);
+
+    // Modal controls
+    function openAdd(){
+      document.getElementById('modalTitle').textContent='Add Achievement';
+      ['type','title','person','year','category','desc'].forEach(id=>document.getElementById(id).value='');
+      document.getElementById('modal').classList.add('open');
+    }
+    function closeModal(){document.getElementById('modal').classList.remove('open');}
+
+    function saveAchievement(){
+      const type = document.getElementById('type').value.trim().toLowerCase();
+      const title = document.getElementById('title').value.trim();
+      const person = document.getElementById('person').value.trim();
+      const year = document.getElementById('year').value.trim();
+      const category = document.getElementById('category').value.trim().toLowerCase()||'general';
+      const desc = document.getElementById('desc').value.trim();
+      if(!type || !title){alert('Please provide at least type and title. Type should be "college" or "student".');return}
+      const item = {id:nextId++,type,title,person,year:year||new Date().getFullYear(),category,desc};
+      store.unshift(item); render(); closeModal();
+    }
+
+    function edit(id){
+      const item = store.find(s=>s.id===id); if(!item) return;
+      document.getElementById('modalTitle').textContent='Edit Achievement';
+      ['type','title','person','year','category','desc'].forEach(idk=>document.getElementById(idk).value=item[idk]);
+      document.getElementById('modal').classList.add('open');
+      // override saveAchievement temporarily
+      const saveBtn = document.querySelector('.panel .action');
+      saveBtn.onclick = function(){
+        item.type = document.getElementById('type').value.trim().toLowerCase();
+        item.title = document.getElementById('title').value.trim();
+        item.person = document.getElementById('person').value.trim();
+        item.year = document.getElementById('year').value.trim();
+        item.category = document.getElementById('category').value.trim().toLowerCase()||'general';
+        item.desc = document.getElementById('desc').value.trim();
+        render(); closeModal();
+        // restore
+        saveBtn.onclick = saveAchievement;
+      }
+    }
+
+    function remove(id){ if(!confirm('Delete this achievement?')) return; store = store.filter(s=>s.id!==id); render(); }
+
+    // init
+    render();
+  </script>
+</body>
+</html>
