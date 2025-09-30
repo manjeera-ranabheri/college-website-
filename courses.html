@@ -1,10 +1,111 @@
 <link rel="stylesheet" href="style.css">
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>College Courses</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Courses - My College</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* General Body Style */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', Arial, sans-serif;
+      background: #f0f4f8;
+      color: #333;
+    }
+
+    /* College Logo Header */
+    .college-logo {
+      text-align: center;
+      font-family: 'Pacifico', cursive;
+      font-size: 4em;
+      color: #004080;
+      padding: 60px 20px 20px 20px;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+    }
+
+    /* Blue Line */
+    .blue-line {
+      width: 100%;
+      height: 6px;
+      background: #004080;
+      margin-bottom: 40px;
+    }
+
+    /* Page Container */
+    .container {
+      width: 80%;
+      margin: auto;
+      padding: 20px 0;
+    }
+
+    .page-title {
+      text-align: center;
+      color: #004080;
+      font-size: 2.5em;
+      margin-bottom: 30px;
+    }
+
+    /* Courses Grid */
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .course-card {
+      background: white;
+      padding: 25px 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .course-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .course-card h3 {
+      color: #004080;
+      margin-bottom: 15px;
+    }
+
+    .course-card p {
+      color: #555;
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    footer {
+      background: #004080;
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+      margin-top: 60px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .college-logo {
+        font-size: 3em;
+      }
+
+      .page-title {
+        font-size: 2em;
+      }
+    }
+  </style>
 </head>
-    <nav>
+<body>
+     <nav>
   <a href="index.html">Home</a>
   <a href="about.html">About</a>
   <a href="courses.html">Courses</a>
@@ -18,18 +119,64 @@
   <a href="team.html">Team</a>
 </nav>
 <hr>
-    
-<body bgcolor="lightpink">
-    <h1 align="center">Our College Courses</h1>
-    <p align="center">We offer a wide range of engineering and technology courses:</p>
-    <ul>
-        <li>Artificial Intelligence and Data Science</li>
-        <li>Artificial Intelligence and Machine Learning</li>
-        <li>Computer Science Engineering</li>
-        <li>Mechanical Engineering</li>
-        <li>Civil Engineering</li>
-        <li>Electronics and Communication Engineering</li>
-        <li>Artificial Intelligence</li>
-    </ul>
+  <!-- College Name Header -->
+  <header class="college-logo">
+    My College
+  </header>
+
+  <!-- Blue Line -->
+  <div class="blue-line"></div>
+
+  <!-- Page Container -->
+  <div class="container">
+    <h2 class="page-title">Our Courses</h2>
+
+    <!-- Courses Grid -->
+    <div class="courses-grid">
+      <!-- Course 1 -->
+      <div class="course-card">
+        <h3>Bachelor of Science (B.Sc)</h3>
+        <p>Explore foundational and advanced courses in science, including Physics, Chemistry, and Biology.</p>
+      </div>
+
+      <!-- Course 2 -->
+      <div class="course-card">
+        <h3>Bachelor of Arts (B.A)</h3>
+        <p>Comprehensive courses in literature, social sciences, and humanities for holistic development.</p>
+      </div>
+
+      <!-- Course 3 -->
+      <div class="course-card">
+        <h3>Bachelor of Commerce (B.Com)</h3>
+        <p>Gain expertise in finance, accounting, economics, and business management practices.</p>
+      </div>
+
+      <!-- Course 4 -->
+      <div class="course-card">
+        <h3>Bachelor of Technology (B.Tech)</h3>
+        <p>Specialized programs in engineering, computer science, and modern technologies.</p>
+      </div>
+
+      <!-- Course 5 -->
+      <div class="course-card">
+        <h3>Master of Science (M.Sc)</h3>
+        <p>Advanced research and professional courses in various scientific disciplines.</p>
+      </div>
+
+      <!-- Course 6 -->
+      <div class="course-card">
+        <h3>Master of Arts (M.A)</h3>
+        <p>Advanced programs in humanities, social sciences, and creative studies.</p>
+      </div>
+
+      <!-- Add more course cards as needed -->
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 My College. All rights reserved.
+  </footer>
+
 </body>
 </html>

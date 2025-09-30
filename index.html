@@ -1,11 +1,157 @@
 <link rel="stylesheet" href="style.css">
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>College Website - Home</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My College - Home</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* General Body Style */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', Arial, sans-serif;
+      background: #eef2f7;
+      color: #333;
+    }
+
+    /* College Logo Header */
+    .college-logo {
+      text-align: center;
+      font-family: 'Pacifico', cursive;
+      font-size: 4em;
+      color: #004080;
+      padding: 60px 20px 10px 20px;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+    }
+
+    /* Blue Line */
+    .blue-line {
+      width: 100%;
+      height: 6px;
+      background: #004080;
+      margin-bottom: 50px;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 20px;
+      background: url('college-hero.jpg') no-repeat center center/cover;
+      color: white;
+      position: relative;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 64, 128, 0.6); /* overlay */
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+    }
+
+    .hero h2 {
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.3em;
+      line-height: 1.6;
+    }
+
+    .hero button {
+      margin-top: 30px;
+      padding: 15px 30px;
+      font-size: 1.1em;
+      background: #ffcc00;
+      color: #004080;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .hero button:hover {
+      background: #e6b800;
+    }
+
+    /* Highlights Section */
+    .highlights {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      width: 80%;
+      margin: 80px auto;
+    }
+
+    .highlight-card {
+      background: white;
+      padding: 30px 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .highlight-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .highlight-card h3 {
+      color: #004080;
+      margin-bottom: 15px;
+    }
+
+    .highlight-card p {
+      color: #555;
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    footer {
+      background: #004080;
+      color: white;
+      text-align: center;
+      padding: 25px 10px;
+      margin-top: 60px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .college-logo {
+        font-size: 3em;
+      }
+      .hero h2 {
+        font-size: 2em;
+      }
+      .hero p {
+        font-size: 1em;
+      }
+    }
+  </style>
 </head>
-<body bgcolor="lightblue">
-        <nav>
+<body>
+    <nav>
   <a href="index.html">Home</a>
   <a href="about.html">About</a>
   <a href="courses.html">Courses</a>
@@ -19,38 +165,47 @@
   <a href="team.html">Team</a>
 </nav>
 <hr>
+  <!-- College Logo Header -->
+  <header class="college-logo">
+    My College
+  </header>
 
-    <center>
-        <h1>Welcome to ABC College</h1>
-        <h3>Affiliated to XYZ University</h3>
-        <hr>
-    </center>
+  <!-- Blue Line -->
+  <div class="blue-line"></div>
 
-    <h2>About Our College</h2>
-    <p>
-        ABC College is one of the leading institutions providing quality education 
-        in engineering, science, and management. Our mission is to create leaders 
-        of tomorrow through innovation, knowledge, and values.
-    </p>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Welcome to My College</h2>
+      <p>Empowering students with knowledge, innovation, and leadership skills to shape a brighter future.</p>
+      <button>Explore Courses</button>
+    </div>
+  </section>
 
-    <h2>Latest News</h2>
-    <ul>
-        <li>Admissions open for 2025-26 academic year</li>
-        <li>College fest "TechnoFest 2025" on October 15th</li>
-        <li>Placement drive starts from November</li>
-    </ul>
+  <!-- Highlights Section -->
+  <section class="highlights">
+    <div class="highlight-card">
+      <h3>Expert Faculty</h3>
+      <p>Learn from highly qualified professors and mentors dedicated to student success.</p>
+    </div>
+    <div class="highlight-card">
+      <h3>Modern Facilities</h3>
+      <p>Advanced labs, libraries, and classrooms designed for interactive learning.</p>
+    </div>
+    <div class="highlight-card">
+      <h3>Diverse Courses</h3>
+      <p>A wide variety of programs in Science, Arts, Commerce, Technology, and more.</p>
+    </div>
+    <div class="highlight-card">
+      <h3>Student Support</h3>
+      <p>Comprehensive services including counseling, mentoring, and extracurricular guidance.</p>
+    </div>
+  </section>
 
-    <h2>Contact Us</h2>
-    <p>
-        📍 Address: ABC College, Main Road, City <br>
-        ☎ Phone: +91-9876543210 <br>
-        📧 Email: info@abccollege.edu
-    </p>
-
-    <center>
-        <hr>
-        <p>© 2025 ABC College. All Rights Reserved.</p>
-    </center>
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 My College. All rights reserved.
+  </footer>
 
 </body>
 </html>
