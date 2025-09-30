@@ -1,3 +1,33 @@
+/* College Header */
+.college-header {
+  text-align: center;
+  font-family: 'Pacifico', cursive; /* stylish font */
+  font-size: 3.5em;
+  color: #1e3a8a; /* deep attractive blue */
+  padding: 40px 20px 10px 20px;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+  background: #f3f4f6; /* optional light background behind header */
+}
+
+/* Blue Line */
+.header-line {
+  width: 100%;
+  height: 6px;
+  background: #1e3a8a; /* matching header color */
+  margin-bottom: 40px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .college-header {
+    font-size: 2.5em;
+    padding: 30px 10px 10px 10px;
+  }
+  .header-line {
+    height: 4px;
+  }
+}
 /* General body style */
 body {
   font-family: Arial, sans-serif;
