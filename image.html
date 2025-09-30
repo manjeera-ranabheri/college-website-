@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upload</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .preview img {
+            max-width: 300px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Upload Your Image</h2>
+    <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="image" id="imageInput" accept="image/*" required>
+        <br><br>
+        <button type="submit">Upload</button>
+    </form>
+
+    <div class="preview">
+        <h3>Image Preview:</h3>
+        <img id="imagePreview" src="" alt="No image selected">
+    </div>
+
+    <script>
+        const imageInput = document.getElementById('imageInput');
+        const imagePreview = document.getElementById('imagePreview');
+
+        imageInput.addEventListener('change', () => {
+            const file = imageInput.files[0];
+            if(file) {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    imagePreview.src = reader.result;
+                }
+                reader.readAsDataURL(file);
+            } else {
+                imagePreview.src = "";
+            }
+        });
+    </script>
+</body>
+</html>
